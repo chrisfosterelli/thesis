@@ -1,4 +1,4 @@
-\subsection{Experiment Methodology}
+\section{Experiment Methodology}
 \label{sec:methodology}
 The experiment methodology follows Sudre et al.~\cite{Sudre2012} using the {\bf 2 vs 2 test}. We train a series of machine learning ridge regression models using the EEG data to generate the input features and individual indexes of {\bf word vectors} matching our word set as the models' predictions.
 
@@ -14,7 +14,7 @@ This selection and averaging process is shown in Figure~\ref{fig:selection}.
 
 \begin{figure}[t]
  \centerline{
-   \includegraphics[width=1.5\linewidth]{figures/selection}
+   \includegraphics[width=\linewidth]{figures/selection}
  }
  \caption{The trial selection pipeline. Our initial data contains participant-word pairs $(s, w)$ for $n_p$ participants and $n_s$ words that each contain between 0 and $n_t$ trials. The trials are of length $l$ and are recorded with $n_e$ electrodes. We select some subsection of these trials, and then average the data across participants to generate $(s, w)_{\text{selected}}$ which contains the averaged trials for each word.}
  \label{fig:selection}
