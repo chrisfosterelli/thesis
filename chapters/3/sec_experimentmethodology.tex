@@ -14,7 +14,7 @@ This selection and averaging process is shown in Figure~\ref{fig:selection}.
 
 \begin{figure}[t]
  \centerline{
-   \includegraphics[width=1.5\linewidth]{fig/selection}
+   \includegraphics[width=1.5\linewidth]{figures/selection}
  }
  \caption{The trial selection pipeline. Our initial data contains participant-word pairs $(s, w)$ for $n_p$ participants and $n_s$ words that each contain between 0 and $n_t$ trials. The trials are of length $l$ and are recorded with $n_e$ electrodes. We select some subsection of these trials, and then average the data across participants to generate $(s, w)_{\text{selected}}$ which contains the averaged trials for each word.}
  \label{fig:selection}
@@ -33,7 +33,7 @@ The weights of the individual models can be concatenated such that $W = [ w_1, w
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.5\textwidth]{fig/features}
+  \includegraphics[width=0.5\textwidth]{figures/features}
   \caption{An evaluation of the trained model that predicts a word vector from EEG data. The set of regression models can be viewed collectively as a single model that takes a single averaged EEG trial $x$ as input and predicts a word vector $\hat{y}$ as output. $W$ is the learned weights from the regression models. The number of EEG features is $n$, which varies depending on the experiment, and $v$ is the length of the word vectors (for our experiments, $v=300$).}
   \label{fig:features}
 \end{figure}
@@ -49,7 +49,7 @@ The set of ridge regression models are then evaluated in a ``leave two out'' fas
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{fig/2vs2}
+  \includegraphics[width=\linewidth]{figures/2vs2}
   \caption{The \tvt, which simplifies word vector prediction to a binary decision task.  
  When the sum of the distances between the correctly aligned ground truth vectors and predicted vectors (solid lines) is smaller than the sum of the distances of the incorrectly aligned ground truth vectors and predicted vectors (dashed lines), the \tvt test is said to have passed.}
   \label{fig:2vs2}
