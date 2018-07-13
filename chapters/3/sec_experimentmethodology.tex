@@ -41,3 +41,25 @@ The weights of the individual models can be concatenated such that $W = [ w_1, w
   \caption{An evaluation of the trained model that predicts a word vector from EEG data. The set of regression models can be viewed collectively as a single model that takes a single averaged EEG trial $x$ as input and predicts a word vector $\hat{y}$ as output. $W$ is the learned weights from the regression models. The number of EEG features is $n$, which varies depending on the experiment, and $v$ is the length of the word vectors (for our experiments, $v=300$).}
   \label{fig:features}
 \end{figure}
+
+\subsection{Evaluation Framework}
+The set of ridge regression models are then evaluated in a ``leave two out'' fashion. That is, we hold out pairs of symbols $(y_i, y_j)$, and train ridge regression models to predict the vectors of the associated words using the EEG data from the remaining $n_s-2$ symbols.  The trained model is used to predict the two target word vectors $\hat{y}_i$ and $\hat{y}_j$ from the held out EEG data. The true word vectors ($y_i$, $y_j$) are then compared to the predicted word vectors ($\hat{y}_i$, $\hat{y}_j$) using a vector distance metric $d$ (in our case the cosine distance). The prediction is considered successful if the sum of the distances between the correctly matched true and predicted word vectors is smaller than the distance of the mismatched vectors as in: 
+  
+\begin{equation}
+  d(y_i, \hat{y}_i) + d(y_j, \hat{y}_j) < d(y_i, \hat{y}_j) + d(y_j, \hat{y}_i)
+  \label{eq:2vs2}
+\end{equation}
+  
+\noindent We run this test for all possible ${\binom{n_s}{2}}$ pairs of words. The \tvt test can detect if the EEG data is correlated with the word vectors. If the EEG data is not correlated to the word vectors, the 2 vs 2 accuracy (the percentage of the ${\binom{n_s}{2}}$ \tvt tests correct) will be  near the chance value of 50\%.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics{figures/2vs2}
+  \caption{A 2 vs. 2 test}
+  \label{fig:2vs2}
+\end{figure}
+
+\subsection{Validating Statistical Significance}
+We tested the statistical significance of our results from experiments in Section~\ref{sec:experiments} using permutation tests. For each experiment, we reran the pipeline, but randomly shuffled the order of the word vectors so that the true word vectors no longer correctly matched with the EEG data for each symbol. This randomization was done after averaging over participants and symbols. We ran the same experiments on 300 permutations of the data, and used the resulting 300 \tvt accuracies to approximate the null distribution (where the data and labels have no statistical relationship). 
+  
+As expected, we found that the empirical null distribution had a mean close to 50\% (chance accuracy) for all experiments. The $p$-values were obtained by testing the reported accuracy against a Gaussian kernel density estimation fit to the associated empirical null distribution. We corrected for multiple testing using the Benjamini-Hochberg-Yekutieli procedure where applicable~\cite{benjamini2001control}, with an alpha value of 0.05.
