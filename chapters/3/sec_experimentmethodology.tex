@@ -12,9 +12,7 @@ We use the {\bf Skip-Gram} word vector set from Mikolov et al.~\cite{Mikolov2013
 \subsection{Prediction Model}
 After the data preprocessing steps mentioned in Section \ref{sec:preprocessing}, every participant-symbol pair is represented by a tensor $D \in \mathbb{R}^{(r \times n_e \times l)}$, where $r$ can be between $0 \ldots n_t$, $n_t$ is the maximum number of possible trials seen for a given symbol, $n_e$ is the total number of electrodes, and $l$ is the number of time steps. Due to the randomness of the paradigm, $r$ varies across $D$s. Each trial is a matrix in $D$ with dimension $n_e \times l$. Further, we use $n_p$ to denote the number of participants and $n_s$ to denote the number of symbols. 
 
-Depending on the type of analysis being performed, we select some trials from the set of all $D$. The selection process may choose all $D$ for certain participants or choose certain trials from each $D$ (see Section \ref{sec:results} and Section \ref{sec:discussion} for more details). We average across all participants and trials to create a tensor of dimension $n_s \times n_e \times l$, denoted as $D_\text{selected}$.  
-
-This selection and averaging process is shown in Figure~\ref{fig:selection}.
+Depending on the type of analysis being performed, we select some trials from the set of all $D$. The selection process may choose all $D$ for certain participants or choose certain trials from each $D$ (see Section \ref{sec:results} and Section \ref{sec:discussion} for more details). We average across all participants and trials to create a tensor of dimension $n_s \times n_e \times l$, denoted as $D_\text{selected}$. This selection and averaging process is shown in Figure~\ref{fig:selection}.
 
 \begin{figure}[t]
  \centerline{
