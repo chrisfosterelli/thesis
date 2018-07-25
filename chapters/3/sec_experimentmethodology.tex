@@ -29,7 +29,7 @@ Before we train regression models, $D_{\text{selected}}$ is reshaped to produce 
   \label{eq:ridge}
 \end{equation}
 
-\noindent where regression model $i$ is trained to predict the $i$th dimension of the word vectors (vector $Y{*,i}$) using weights $W_{*,i}$. $\alpha$ is a hyperparameter that controls the level of regularization. We use a standard $\alpha = 0.1$, although several values were tried empirically and found the only minor variation in performance. Using a trained regression model we can predict a single element of a word vector for a given input via $\hat{Y}_{i,j} = X_{i, *} \cdot W_{*,j}$.
+\noindent where regression model $i$ is trained to predict the $i$th dimension of the word vectors (vector $Y_{*,i}$) using weights $W_{*,i}$. $\alpha$ is a hyperparameter that controls the level of regularization. We use a standard $\alpha = 0.1$, although several values were tried empirically and found the only minor variation in performance. Using a trained regression model we can predict a single element of a word vector for a given input via $\hat{Y}_{i,j} = X_{i, *} \cdot W_{*,j}$.
 
 The weights of the individual models can be concatenated such that $W = [ W_{*,1}, W_{*,2}, ... W_{*,v} ]$. Collectively, $W$ is a single model that produces predicted word vectors using $\hat{Y} = X \cdot W$. An example evaluation of the model on a single input vector $X_{i,*}$ from $X$ is seen in Figure ~\ref{fig:features}.
 
