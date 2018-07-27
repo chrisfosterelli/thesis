@@ -36,7 +36,7 @@ The complete weight matrix $W$ is found by concatenating the individual model we
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.5\textwidth]{figures/features}
-  \caption{An evaluation of the trained model that predicts a word vector from EEG data. The set of regression models can be viewed collectively as a single model that takes a single averaged EEG trial $x$ as input and predicts a word vector $\hat{y}$ as output. $W$ is the learned weights from the regression models. The number of EEG features is $n$, which varies depending on the experiment, and $v$ is the length of the word vectors (for our experiments, $v=300$).}
+  \caption{An evaluation of the trained model that predicts a word vector from EEG data. The set of regression models can be viewed collectively as a single model that takes a single averaged EEG trial $X_{i,*}$ as input and predicts a word vector $\hat{Y}_{i,*}$ as output. $W$ is the learned weights from the regression models. The number of EEG features is $n = n_e * l$, which varies depending on the experiment, and $v$ which is the length of the word vectors (for our experiments, $v=300$). Note that the visual representations of the vectors are transposed from their actual shape for display purposes.}
   \label{fig:features}
 \end{figure}
 
@@ -53,7 +53,7 @@ The set of ridge regression models are then evaluated in a ``leave two out'' fas
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/2vs2}
-  \caption{A 2 vs. 2 test}
+  \caption{A \tvt comparison. We perform this comparison for all possible pairs of words, and the resulting \tvt accuracy is the percentage of total symbols which are correctly aligned (when measured by a standard vector distance metric).}
   \label{fig:2vs2}
 \end{figure}
 
