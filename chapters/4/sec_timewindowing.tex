@@ -1,7 +1,7 @@
 \section{Time Windowing Experiment}
 \begin{figure*}[t]
   \centerline{
-    \includegraphics[width=\linewidth]{fig/reshape}
+    \includegraphics[width=\linewidth]{figures/reshape}
   }
   \caption{The data reshaping pipeline. Averaged trial data from $D_{\text{selected}}$ can be directly passed to the reshaping process, or it can be passed through another selection. We can perform two types of selection, one for time analysis or one for channel analysis. We reshaped to flatten across the electrode dimension, such that our training data for the model is $n_s \times (n_e * l)$.}
   \label{fig:reshape}
