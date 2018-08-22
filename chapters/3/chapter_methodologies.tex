@@ -6,3 +6,92 @@
 \input chapters/3/sec_datapreprocessing
 \input chapters/3/sec_experimentmethodology
 \input chapters/3/sec_conclusion
+
+During the reading of a native language, semantic incongruities in sentences 
+can be detected based on ERP responses in 
+EEG~\cite{kutas1980reading,kuperberg2007neural}. More recently, it has been 
+shown that machine learning methods can be used to detect features not clearly 
+visible in simple magnitude comparisons. For example, machine learning can be 
+used to detect the cognitive state based on functional Magnetic Resonance 
+Imaging (fMRI)  data, and can differentiate between trials where participants  
+view pictures or read sentences~\cite{Wang2002}. Complex neuronal activation 
+features can also be extracted using machine learning for tasks like detecting 
+ambiguous sentences, performing sentiment analysis, or determining the category 
+of an object~\cite{Mitchell2002,Shinkareva2008,Gu2014}.
+
+Additionally, machine learning models allow us to more deeply explore semantic 
+processing, and have provided impressive insight into the human brain via fMRI 
+and Magnetoencephalography (MEG)~\cite{Mitchell2008, Sudre2012}. By training a 
+machine learning model to accurately predict the expected fMRI activity of a 
+person reading concrete nouns, Mitchell et al. showed that the semantic 
+features of a word are correlated with fMRI data of a participant viewing the 
+word~\cite{Mitchell2008}. Although the model is trained using observed fMRI 
+data of participants reading 60 concrete nouns, the model is capable of 
+generating predictions for thousands of words for which it has never seen fMRI 
+data. This is achieved by encoding each word as a vector of intermediate 
+features based on the co-occurrences of the word with 25 verbs in a  large 
+corpus.  This work differs from previous work, which was only capable of 
+recognizing brain states that the machine learning algorithm had already been 
+trained to 
+recognize~\cite{kutas1980reading,kuperberg2007neural,Wang2002,Mitchell2002,Shinkareva2008,Gu2014}. 
+Mitchell et al. demonstrated a direct relationship between the statistics of 
+word co-occurrence and the neural activation associated with each word's 
+meaning~\cite{Mitchell2008}
+
+Another key study in this area reproduced Mitchell et al.~\cite{Mitchell2008} 
+using MEG~\cite{Sudre2012}.  Sudre et al. used MEG data and word vectors to 
+correctly identify concrete nouns.  However, in this work, the  word vectors 
+were based on human responses to semantic questions about the word (e.g. Is it 
+alive?  It it bigger than a golf ball?) rather than automatically generated 
+features from text corpora. The use of MEG allowed Sudre et al. to pinpoint in 
+time when the semantics of a word could be detected and when the strength of 
+the representation was the strongest.  Subsequent work showed that, with some 
+fine tuning, word vectors derived from a text corpus could be as accurate for 
+predicting the word a person is reading as the behavioral vectors used in Sudre 
+et al.~\cite{Murphy2012}.
+
+EEG data, however, has remained comparatively underutilized for the 
+fine-grained distinction of individual words. This may be due to the challenges 
+that come with EEG data (e.g. lower spatial resolution, comparatively poor 
+signal-to-noise ratio).  One of the first studies to successfully use word 
+vectors to differentiate words EEG was performed by Murphy et al in 
+2009~\cite{Murphy2009}.  In addition, they were able to distinguish between two 
+semantic classes (land mammals or work tools)~\cite{Murphy2009,Murphy2011}. The 
+accuracy was as high as 98\% when averaged over multiple analyses, providing 
+evidence that EEG could give more cost effective exploration of brain-based 
+semantics in more naturalistic environments.  Our study adds to the body of 
+evidence that EEG can be used to model semantics representations with 
+significant accuracy.
+
+In addition to studying representation, in this work we also examine learning. 
+Our novel experimental design also allows us to study participant learning in a 
+unique fashion by applying a machine learning model of semantic 
+representations. Learning has been traditionally studied in EEG using ERPs. The 
+ERP of particular interest for learning is known as the \emph{reward 
+positivity}~\cite{proudfit2015reward}. The amplitude of the reward positivity 
+is associated with behavior-measured learning when presented in a reinforcement 
+learning paradigm~\cite{holroyd2002neural, sutton1998reinforcement, 
+williams2017application}. However, the exact nature of the reward positivity's 
+association with learning remains unclear. In some work the reward positivity 
+is found to have a progressively reduced amplitude as participants perform 
+better on the task, and in other work this correlation has not been 
+consistently detected~\cite{walsh2012learning}. We aim to provide an 
+alternative tool for analyzing learning in this paradigm, which may provide 
+insight into the reward positivity and offer other benefits.
+
+This paper expands on previous work by adapting the existing semantic analysis 
+methodology~\cite{Mitchell2008,Sudre2012} to EEG data.  We use a novel 
+experimental design, in which participants perform a reinforcement learning 
+task that guides participants through learning an artificial language. To 
+detect semantics we trained a machine learning model to map from raw EEG signal 
+to word vectors derived from an artificial neural network. We evaluate this 
+model using the 2 vs 2 test, a method originally developed by Mitchell et 
+al.~\cite{Mitchell2008}, that simplifies a complex multiple regression model 
+into a binary classification task. Our results show that 
+\begin{inparaenum}[(1)]
+  \item we can detect the reward positivity in this learning paradigm
+  \item the reward positivity diminishes after the first correct trial
+  \item the semantic representation of words is detectable in EEG, and \item we 
+  can detect learning as participants progress in through the paradigm,
+\end{inparaenum}
+closely tracking an ERP analysis.
