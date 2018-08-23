@@ -4,8 +4,8 @@
 \subsection{Overview}
 The experiment methodology follows Sudre et al.~\cite{Sudre2012} using the {\bf 
 \tvt test}. We train a series of machine learning ridge regression models using 
-the EEG data to generate the input features and individual indexes of {\bf word 
-vectors} matching our word set as the models' predictions.
+the EEG data to generate the individual values for the given indices of {\bf 
+word vectors} matching our word set as the models' predictions.
 
 \subsection{Word Vectors}
 We use the {\bf Skip-Gram} word vector set from Mikolov et 
@@ -75,24 +75,27 @@ use a linear least squares loss function and l2-norm regularization (ridge
 regression):
 
 \begin{equation}
-  \underset{W_{*,i}}{min\,} {|| X W_{*, i} - Y_{*, i}||_2^2 + 
-  \alpha ||W_{*, i}||_2^2}
+  \underset{W_{:,i}}{min\,} {|| X W_{:, i} - Y_{:, i}||_2^2 + 
+  \alpha ||W_{:, i}||_2^2}
   \label{eq:ridge}
 \end{equation}
 
 \noindent where regression model $i$ is trained to predict the $i$th dimension 
-of the word vectors (column vector $Y_{*,i}$) using weights $W_{*,i}$. $\alpha$ 
-is a hyperparameter that controls the level of regularization. We use a 
-standard $\alpha = 0.1$, although several values were tried empirically and 
-found the only minor variation in performance. Using a trained regression model 
-we can predict a single element of a word vector for a given input via 
-$\hat{Y}_{i,j} = X_{i, *} \cdot W_{*,j}$.
+of the word vectors (column vector $Y_{:,i}$) using weights $W_{:,i}$. The 
+symbol $:$ indexes every element in the dimension, here indicating the 
+selection of a whole row or column vector from a matrix. $\alpha$ is a 
+hyperparameter that controls the level of regularization. We use a standard 
+$\alpha = 0.1$, although we tested several values empirically and found the 
+only minor variation in performance. Using a trained regression model, we can 
+predict a single element of a word vector for a given input $X_{i,:}$ via 
+$\hat{Y}_{i,j} = X_{i, :} \cdot W_{:,j}$.
+  
+$W$ is the concatenation of the individual model weights such that $W = [ 
+W_{:,1}, W_{:,2}, ... W_{:,v} ]$. Collectively, $W$ is a single model that 
+produces predicted word vectors using $\hat{Y} = X \cdot W$. An example 
+evaluation of the model on a single input vector $X_{i,:}$ from $X$ is seen in 
+Figure ~\ref{fig:features}.
 
-The complete weight matrix $W$ is found by concatenating the individual model 
-weights such that $W = [ W_{*,1}, W_{*,2}, ... W_{*,v} ]$. Collectively, $W$ is 
-a single model that produces predicted word vectors using $\hat{Y} = X \cdot 
-W$. An example evaluation of the model on a single input vector $X_{i,*}$ from 
-$X$ is seen in Figure ~\ref{fig:features}.
 
 \begin{figure}[t]
   \centering
@@ -100,8 +103,8 @@ $X$ is seen in Figure ~\ref{fig:features}.
   \caption[Evaluation of the Trained Model]{
     An evaluation of the trained model that predicts a word vector from EEG 
     data.  The set of regression models can be viewed collectively as a single 
-    model that takes a single averaged EEG trial $X_{i,*}$ as input and 
-    predicts a word vector $\hat{Y}_{i,*}$ as output. $W$ is the learned 
+    model that takes a single averaged EEG trial $X_{i,:}$ as input and 
+    predicts a word vector $\hat{Y}_{i,:}$ as output. $W$ is the learned 
     weights from the regression models. The number of EEG features is $n = n_e 
     * l$, which varies depending on the experiment, and $v$ which is the length 
     of the word vectors (for our experiments, $v=300$). Note that the visual 
@@ -113,25 +116,25 @@ $X$ is seen in Figure ~\ref{fig:features}.
 
 \subsection{Evaluation Framework}
 The set of ridge regression models are then evaluated in a ``leave two out'' 
-fashion. That is, we hold out pairs of symbols $(Y_{i,*}, Y_{j,*})$, and train 
-ridge regression models to predict the vectors of the associated words using 
-the EEG data from the remaining $n_s-2$ symbols.  The trained model is used to 
-predict the two target word vectors $\hat{Y}_{i,*}$ and $\hat{Y}_{j,*}$ from 
-the held out EEG data. The true word vectors ($Y_{i,*}$, $Y_{j,*}$) are then 
-compared to the predicted word vectors ($\hat{Y}_{i,*}$, $\hat{Y}_{j,*}$) using 
-a vector distance metric $d$ (in our case the cosine distance). The prediction 
-is considered successful if the sum of the distances between the correctly 
-matched true and predicted word vectors is smaller than the distance of the 
-mismatched vectors as in: 
+fashion by a binary comparison known as the \tvt test. We hold out pairs of 
+symbols $(Y_{i,:}, Y_{j,:})$, and train ridge regression models to predict the 
+vectors of the associated words using the EEG data from the remaining $n_s-2$ 
+symbols.  The trained model is used to predict the two target word vectors 
+$\hat{Y}_{i,:}$ and $\hat{Y}_{j,:}$ from the held out EEG data. The true word 
+vectors ($Y_{i,:}$, $Y_{j,:}$) are then compared to the predicted word vectors 
+($\hat{Y}_{i,:}$, $\hat{Y}_{j,:}$) using a vector distance metric $d$ (in our 
+case the cosine distance). The \tvt test is considered successful if the sum of 
+the distances between the correctly matched true and predicted word vectors is 
+smaller than the distance of the mismatched vectors as in: 
   
 \begin{equation}
-  d(Y_{i,*}, \hat{Y}_{i,*}) + d(Y_{j,*}, \hat{Y}_{j,*}) < 
-  d(Y_{i,*}, \hat{Y}_{j,*}) + d(Y_{j,*}, \hat{Y}_{i,*})
+  d(Y_{i,:}, \hat{Y}_{i,:}) + d(Y_{j,:}, \hat{Y}_{j,:}) < 
+  d(Y_{i,:}, \hat{Y}_{j,:}) + d(Y_{j,:}, \hat{Y}_{i,:})
   \label{eq:2vs2}
 \end{equation}
-  
-\noindent We run this test for all possible ${\binom{n_s}{2}}$ pairs of words. 
-The \tvt test can detect if the EEG data is correlated with the word vectors. 
+
+\noindent We run this test for all possible ${\binom{n_s}{2}}$ pairs of words.  
+The \tvt test can detect if the EEG data is correlated with the word vectors.  
 If the EEG data is not correlated to the word vectors, the 2 vs 2 accuracy (the 
 percentage of the ${\binom{n_s}{2}}$ \tvt tests correct) will be  near the 
 chance value of 50\%.
