@@ -82,25 +82,36 @@ et al.~\cite{Murphy2012}.
 
 While most of the work discussed here focuses on the analysis of single 
 concrete nouns, recent work has been done that extends into more complicated 
-language structures such as phrases or sentences. Chang et al. showed that it 
-is possible to identify adjective-noun phrases with classification models 
-utilizing fMRI data, and that vector-based semantic models are related to brain 
-activity of participants reading the adjective-noun phrases~\cite{Change2009}.
+language structures such as phrases or sentences. 
+
+Chang et al. showed that it is possible to identify adjective-noun phrases with 
+classification models utilizing fMRI data, and that vector-based semantic 
+models are related to brain activity of participants reading the adjective-noun 
+phrases~\cite{Change2009}. Fyshe showed that a similar computational model 
+based on word vectors could also be applied to adjective noun 
+phrases~\cite{afyshethesis}.
+
+Pereira et al. adapted the semantic representation model for whole 
+sentences~\cite{pereira2018toward}, and covered a much larger semantic variety 
+of words than previous work. In our work, we will focus on adapting the single 
+word paradigm to EEG. However, with this ground work established in EEG more 
+complicated language structures become an obvious area for future 
+experimentation.
 
 \section{Research in EEG}
 
-EEG data, however, has remained comparatively underutilized for the 
-fine-grained distinction of individual words. This may be due to the challenges 
-that come with EEG data (e.g. lower spatial resolution, comparatively poor 
-signal-to-noise ratio).  One of the first studies to successfully use word 
-vectors to differentiate words EEG was performed by Murphy et al in 
-2009~\cite{Murphy2009}.  In addition, they were able to distinguish between two 
-semantic classes (land mammals or work tools)~\cite{Murphy2009,Murphy2011}. The 
-accuracy was as high as 98\% when averaged over multiple analyses, providing 
-evidence that EEG could give more cost effective exploration of brain-based 
-semantics in more naturalistic environments.  Our study adds to the body of 
-evidence that EEG can be used to model semantics representations with 
-significant accuracy.
+Compared to fMRI and MEG, EEG data has remained comparatively underutilized for 
+the fine-grained distinction of individual words. This may be due to the 
+challenges that come with EEG data (e.g. lower spatial resolution, 
+comparatively poor signal-to-noise ratio).  One of the first studies to 
+successfully use word vectors to differentiate words EEG was performed by 
+Murphy et al in 2009~\cite{Murphy2009}. In addition, they were able to 
+distinguish between two semantic classes (land mammals or work 
+tools)~\cite{Murphy2009,Murphy2011}. The accuracy was as high as 98\% when 
+averaged over multiple analyses, providing evidence that EEG could give more 
+cost effective exploration of brain-based semantics in more naturalistic 
+environments.  Our study adds to the body of evidence that EEG can be used to 
+model semantics representations with significant accuracy.
 
 \section{Learning-related Literature}
 
@@ -122,20 +133,21 @@ insight into the reward positivity and offer other benefits.
 
 \section{Conclusion}
 
-This paper expands on previous work by adapting the existing semantic analysis 
-methodology~\cite{Mitchell2008,Sudre2012} to EEG data.  We use a novel 
-experimental design, in which participants perform a reinforcement learning 
-task that guides participants through learning an artificial language. To 
-detect semantics we trained a machine learning model to map from raw EEG signal 
-to word vectors derived from an artificial neural network. We evaluate this 
-model using the 2 vs 2 test, a method originally developed by Mitchell et 
-al.~\cite{Mitchell2008}, that simplifies a complex multiple regression model 
-into a binary classification task. Our results show that 
-\begin{inparaenum}[(1)]
-  \item we can detect the reward positivity in this learning paradigm
-  \item the reward positivity diminishes after the first correct trial
-  \item the semantic representation of words is detectable in EEG, and \item we 
-  can detect learning as participants progress in through the paradigm,
-\end{inparaenum}
-closely tracking an ERP analysis.
+Traditional analysis methods for semantic information in the brain consist 
+mostly of ERP-based techniques, however machine learning methods have been able 
+to provide additional insight over magnitude based visual comparisons. Mitchell 
+et al. built on these early methods to create an approach that utilizes 
+semantic word vectors generated from a text corpus~\cite{Mitchell2008}. This 
+approach models the actual semantics of words rather than learning a mapping 
+between the brain data and a category, and introduces the ability to generalize 
+to words the model has never been trained on before. 
 
+This work, original in fMRI, was further iterated on when adapted to 
+MEG~\cite{Sudre2012}. It has also been expanded to include more complex 
+language structures such as sentences and adjective-noun 
+phrases~\cite{pereira2018toward, afyshethesis}. Our work builds on these to 
+adapt the corpus-based approach from Mitchell et al. and the iterations from 
+Sudre et al.  to the EEG collection methodology and our reinforcement learning 
+based experiment paradigm. The following chapter will describe the experiment 
+paradigm, preprocessing techniques, and model framework we use in our 
+experiments.
