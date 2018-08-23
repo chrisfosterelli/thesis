@@ -16,10 +16,12 @@ phenomenon that are directly visible in the data, such as with ERPs, more
 complex patterns can be detected with automated analysis methods such as 
 machine learning techniques. This can be useful for identifying attributes of 
 the EEG data that is not tied to simple magnitude comparisons, or when analysis 
-needs to be performed on an online setting (i.e, in real time). For example, an 
-early application of machine learning classification on brain data was the use 
-by Wang et al. to detect whether or not participants were viewing a picture of 
-reading sentences based on their fMRI activity~\cite{Wang2002}. 
+needs to be performed on an online setting (i.e, in real time). Additionally, 
+grand average ERPs can be different in timing and amplitude between 
+participants depending on age variations~\cite{cunningham2000speech}. For 
+example, an early application of machine learning classification on brain data 
+was the use by Wang et al. to detect whether or not participants were viewing a 
+picture of reading sentences based on their fMRI activity~\cite{Wang2002}. 
 
 Machine learning methods can also be useful for detecting semantic information.  
 Mitchell et al. were able to categorize trials of participants reading a word 
@@ -75,6 +77,15 @@ the representation was the strongest. Subsequent work showed that, with some
 fine tuning, word vectors derived from a text corpus could be as accurate for 
 predicting the word a person is reading as the behavioral vectors used in Sudre 
 et al.~\cite{Murphy2012}.
+
+\section{Larger Language Structures}
+
+While most of the work discussed here focuses on the analysis of single 
+concrete nouns, recent work has been done that extends into more complicated 
+language structures such as phrases or sentences. Chang et al. showed that it 
+is possible to identify adjective-noun phrases with classification models 
+utilizing fMRI data, and that vector-based semantic models are related to brain 
+activity of participants reading the adjective-noun phrases~\cite{Change2009}.
 
 \section{Research in EEG}
 

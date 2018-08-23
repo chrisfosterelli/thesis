@@ -1,9 +1,9 @@
 \section{Validating Statistical Significance}
 We tested the statistical significance of our results from experiments in 
-Section~\ref{sec:experiments} using permutation tests. For each experiment, we 
-reran the pipeline, but randomly shuffled the order of the word vectors so that 
-the true word vectors no longer correctly matched with the EEG data for each 
-symbol. This randomization was done after averaging over participants and 
+Chapter~\ref{chapter:experiments} using permutation tests. For each experiment, 
+we reran the pipeline, but randomly shuffled the order of the word vectors so 
+that the true word vectors no longer correctly matched with the EEG data for 
+each symbol. This randomization was done after averaging over participants and 
 symbols. We ran the same experiments on 300 permutations of the data, and used 
 the resulting 300 \tvt accuracies to approximate the null distribution (where 
 the data and labels have no statistical relationship). 
