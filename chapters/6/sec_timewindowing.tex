@@ -13,11 +13,11 @@ retrieval by about a quarter of a second.
 
 Interestingly, very little \tvt accuracy is lost when we evaluated our model 
 using only a small window (50ms) compared to our initial experiment (Section 
-~\ref{sec:discussion:detectionofsemanticrepresentation}) which used a much 
-longer window (700ms). By windowing the exposure we remove the majority of data 
-provided to the regression models, but see only a minimal reduction in accuracy 
-(5\%). This is notable since a model with significantly fewer parameters is 
-much faster to train and evaluate.
+~\ref{sec:discussion:semanticrepresentation}) which used a much longer window 
+(700ms). By windowing the exposure we remove the majority of data provided to 
+the regression models, but see only a minimal reduction in accuracy (5\%). This 
+is notable since a model with significantly fewer parameters is much faster to 
+train and evaluate.
 
 We also see a large, statistically significant spike in \tvt accuracy early in 
 time, around 125ms-200ms. Sudre et al. had also found statistically significant 
@@ -27,22 +27,22 @@ than the semantics of the words~\cite{Sudre2012}. Our experiment, however,
 should not experience the same correlation with visual features such as 
 \emph{Word Length} or \emph{Image Diagonalness} as we use an arbitrary mapping 
 of words to symbols (discussed in 
-Section~\ref{sec:discussion:detectionofsemanticrepresentation}). It is notable 
-that studies have shown evidence of semantics much earlier in time, such as 
-Moseley et al. who were able to differentiate between semantic categories as 
-early as 150ms into the exposure~\cite{moseley2013sensorimotor}. There are 
-several key difference between this experiment and Sudre et al..  First, our 
-experiment uses Skipgram instead of vectors based on behavioral responses to 
-semantic questions. The Skipgram method, based on word co-location, encodes 
-semantics differently than the behavioral response vectors, and may model some 
-component of semantic representations that is available earlier in time.  
-Second, our experiment uses multiple parts of speech, whereas the original 
-Sudre et al. used only concrete nouns.  Perhaps part of speech identity is 
-differentiable early in time, which would not have been detectable in an 
-experiment using only nouns.  Third, the task performed by our participants is 
-much more interactive and requires engagement learning.  The Sudre et al. task 
-was a simple semantic question answering task. Perhaps a more engaging task 
-evokes a faster or more consistent neural response.  Each of these differences 
-may be the reason we see such early semantic activation.  We will need further 
-experiments to determine if this early semantic signal is replicable, and if it 
-is truly correlated to very early semantic recall.
+Section~\ref{sec:discussion:semanticrepresentation}). It is notable that 
+studies have shown evidence of semantics much earlier in time, such as Moseley 
+et al. who were able to differentiate between semantic categories as early as 
+150ms into the exposure~\cite{moseley2013sensorimotor}. There are several key 
+difference between this experiment and Sudre et al..  First, our experiment 
+uses Skipgram instead of vectors based on behavioral responses to semantic 
+questions. The Skipgram method, based on word co-location, encodes semantics 
+differently than the behavioral response vectors, and may model some component 
+of semantic representations that is available earlier in time.  Second, our 
+experiment uses multiple parts of speech, whereas the original Sudre et al. 
+used only concrete nouns.  Perhaps part of speech identity is differentiable 
+early in time, which would not have been detectable in an experiment using only 
+nouns.  Third, the task performed by our participants is much more interactive 
+and requires engagement learning.  The Sudre et al. task was a simple semantic 
+question answering task. Perhaps a more engaging task evokes a faster or more 
+consistent neural response.  Each of these differences may be the reason we see 
+such early semantic activation.  We will need further experiments to determine 
+if this early semantic signal is replicable, and if it is truly correlated to 
+very early semantic recall.
