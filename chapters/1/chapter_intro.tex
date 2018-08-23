@@ -26,8 +26,8 @@ Magnetoencephalography (MEG).  Our approach, using EEG, has a number of
 benefits. Particularly, it is often several levels of magnitude cheaper than 
 other technologies and generally requires less training to operate.
 
-We also show that, using a slightly modified model, we can detect the process 
-of learning by monitoring how the semantic representations of the native word 
+We also show that, using a similar approach, we can detect the process of 
+learning by monitoring how the semantic representations of the native word 
 develop during an artificial language learning task. To our knowledge, this is 
 the first application of this methodology for learning research in the brain.  
 Traditionally, this is done with a technique which measures a specific brain 
@@ -35,7 +35,105 @@ response known as the \emph{reward positivity}. Our approach has a number of
 benefits over traditional measurements of learning, including the ability to 
 measure the retention of knowledge and the speed at which learning occurs.
 
+\section{Thesis Overview}
+
+The rest of this chapter will introduce the important background concepts 
+needed, and detail our specific contributions to the state-of-the-art. The 
+chapter following reviews the key literature which we build on in this thesis.  
+Chapter 3 introduces the methodologies used in our study, including the data 
+collection paradigm, participant information, preprocessing of EEG data, and 
+the computational model for analyzing the semantic represenations. With the 
+methodologies in mind, Chapter 4 covers the six experiments that we performed 
+using our model and Chapter 5 includes the results of those experiments. In 
+Chapter 6, we discuss the conclusions that we can draw from our results and how 
+the results align with existing literature. The last chapter will summarize our 
+new contributions to the field and conclude the thesis.
+
+This research expands on previous work by adapting the existing semantic 
+analysis methodology~\cite{Mitchell2008,Sudre2012} to EEG data.  We use a novel 
+experimental design, in which participants perform a reinforcement learning 
+task that guides participants through learning an artificial language. To 
+detect semantics we trained a machine learning model to map from raw EEG signal 
+to word vectors derived from an artificial neural network. We evaluate this 
+model using the 2 vs 2 test, a method originally developed by Mitchell et 
+al.~\cite{Mitchell2008}, that simplifies a complex multiple regression model 
+into a binary classification task.
+
+By the end of the thesis, we will have covered results showing that we can 1) 
+detect the semantic representation of English words in EEG while participants 
+read the symbol language, 2) measure how these semantic representations develop 
+over time during the participant learning phase, 3) validate and compare our 
+model against a traditional reward positivity analysis of the same experiment, 
+4) provide supportive evidence that suggests intuitive alignment with the 
+participants' task accuracies, 5) identify a delayed peak in the strength of 
+the semantic representation correlating to the delay required for the task, and 
+6) provide further evidence that the source of semantic represenations in the 
+human brain is highly distributed and not simply attributable to a single area 
+of the cortex.
+
 \section{Background and Terminology}
+
+This section will briefly introduce the relevant terminology at a high level, 
+for those not familiar with the fields of neuroscience or machine learning.  
+With a cursory understanding of these, the topics discussed in the thesis 
+should be easier to follow. This is not designed to be a complete review of the 
+topics and readers are encouraged to investigate further if a topic is 
+unfamiliar to them.
+
+Machine learning is a subfield of artificial intelligence that gives computers 
+the ability to improve their performance at a task in response to data about 
+that task (called training data). This is done using statistical techniques.  
+The most common type of machine learning is supervised learning, in which 
+training data consists of pairs of inputs and desired outputs. The algorithm 
+learns to map from a given input $x$ to a predicted output $\hat{y}$ using 
+training data sets with inputs $X$ and matching outputs $Y$.
+
+In this work we use linear ridge regression, a type of machine learning 
+algorithm. Regression indicates that the model predicts a scalar value, rather 
+than a category. We use sets of these to make a multi-output prediction, known 
+as a multivariate linear regression. A linear model is a model which learns a 
+polynomial function with a degree of at most one (that is, it predicts in a 
+straight line). Ridge regression, also known as weight decay, is a type of 
+linear regression that utilizes a regularization mechanism. This is designed to 
+help the algorithm perform better on results which are not in the training set 
+(known as generalization). A linear model takes a set of inputs $x_1, x_2, ...  
+x_n$ and predicts an output $\hat{y}$ by multiplying weights $w_1, w_2, ...  
+w_n$ with the inputs and adding the components together. The weights for a 
+linear model can be estimated in a few ways, which are outside of the scope of 
+this summary.
+
+Another topic that is discussed are artificial neural networks. These are 
+computational systems which are vaguely inspired by the connections in the 
+brain. A \emph{neuron} is a single unit which receives inputs $x$ and applies 
+weights $w$ to each input respectively (similar to linear models). However, 
+after summing the components a special function known as an activation function 
+is applied to the result. The result of the activation function is the output 
+of the neural. The activation function is typically a non-linear function, 
+which allows the artificial neural network to learn to model non-linear data.  
+As the phrase "network" suggests, these neurons are generally connected in 
+series and parallel to form multiple layers of computation. The weights for a 
+neural network are found using a process known as \emph{gradient descent}. 
+
+Some neuroscience terminology is utilized here as well. The \emph{cortex} 
+refers to the outermost layer of an organ in the body. In all cases here, we 
+are referring to the cerebral cortex, which is the outermost layer of the 
+cerebrum. The cerebrum is the upper, largest section of the human brain which 
+is associated with higher brain operations such as speech, movement, sensory 
+processing, and other functions. Much of this functionality resides directly on 
+the cortex. The cortex is categorized into four lobes: the frontal, parietal, 
+temporal, and occipital lobes. The cortex contains folds, which increase the 
+surface area. Each fold contains a gyrus (the ridge or peak of the fold) and 
+sulcus (the depression between one fold and the neighboring fold).
+
+Electrophysiology is the study of electrical activity in biological tissues. In 
+neuroscience, the electrophysiology signals of interest are the electrical 
+signals from the nervous system of the body.
+
+As mentioned prior, semantics refers to the study of meaning. This research 
+area explores how the brain represents these semantics. When we discuss the 
+semantic representation of a word in the brain, we are referring to the 
+electrophysiological state of the brain while it is processing the meaning of a 
+given word.
 
 \section{Collection Methodologies}
 
@@ -86,9 +184,8 @@ the participant, they are less capable of measuring subcortical activity in the
 brain than fMRI. Further, the electrical signals measured by EEG do not diffuse 
 through the skull and scalp as well as the magnetic fields detected by MEG, 
 making EEG more susceptible to noise. However, EEG is sensitive to more brain 
-areas than MEG as it detects activity in both the sulci (the grooves in the 
-cerebral cortex) and the top of the gyri (the ridges on the cerebral cortex), 
-while MEG mostly detects activity in the sulci. Due to the lower cost of 
+areas than MEG as it detects activity in both the sulci and the top of the 
+gyri, while MEG mostly detects activity in the sulci. Due to the lower cost of 
 equipment, non-dependence on a magnetically shielded room, and reduced training 
 requirements, EEG collection is also more cost effective than fMRI or MEG.  
 Despite the challenges with noise, EEG has a lower barrier to research and 
