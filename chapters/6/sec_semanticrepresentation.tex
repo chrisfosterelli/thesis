@@ -32,7 +32,11 @@ dominant shapes in the image or the length of the word, and might not be
 related to word meaning. Because the mapping of symbols to words was totally 
 arbitrary, our results are strong evidence that models leveraging word vectors 
 truly model the brain's representation of word \emph{meaning}, and not some 
-low-level visual features of the stimuli.
+low-level visual features of the stimuli. Although the translated word did 
+become visible as one of the four options at the 500 ms mark, we see 
+statistically significant \tvt accuracy even when only training on the period 
+that the symbol alone is visible (specifically a 0 - 500 ms \tvt accuracy of 
+69.15\% which is significant with $p < 0.001$).
 
 In previous work, participants were requested to visualize the concepts while 
 viewing words and images~\cite{Mitchell2008,Sudre2012}. In our experiment, 
@@ -67,7 +71,7 @@ our methodology can detect a semantic difference between words both within and
 between various parts of speech.
 
 While this methodology has been applied to other brain imaging modalities 
-before, and we are not the first to show evidence of semantic represnetation 
+before, and we are not the first to show evidence of semantic representation 
 using EEG, this initial experiment contributes to the body of evidence 
 supporting the use of EEG for semantic represenation research and provides 
 iteration and new insight on the technique of using linear models to predict 
