@@ -14,11 +14,13 @@ for each participant (as we can assume the symbols were not associated with a
 semantic meaning in the first two trials). The parameters for trial selection 
 (two and six) provide a balance between allowing the participant time to learn 
 the word, while also retaining enough data to train our model. We cut trials to 
-700 ms in length, which avoided including muscle signals in the exposure after 
-the word set appearance at 500 ms (as the shortest response time was 248 ms).  
-We then averaged the remaining exposures over all participants for each word, 
-which gave us a single noise-reduced exposure per word. This data was used to 
-train regression models and perform the \tvt test. 
+700 ms in length to avoid including muscle signals in the exposure after the 
+word set appearance at 500 ms (as the shortest response time was 248 ms).  We 
+also test with trials cut to 500 ms to compare the \tvt accuracy when the word 
+set appearance is excluded from the exposure. We then averaged the remaining 
+exposures over all participants for each word, which gave us a single 
+noise-reduced exposure per word. This data was used to train regression models 
+and perform the \tvt test. 
 
 This experiment is the closest to previous work in other modalities, and 
 functions as our baseline validation of the experiment methodologies discussed 

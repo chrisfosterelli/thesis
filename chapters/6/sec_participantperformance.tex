@@ -2,11 +2,13 @@
 In the Participant Performance Experiment, we hypothesized that the task 
 accuracy of participants should be related to the \tvt accuracy. To test this, 
 we took both the top 7 and bottom 7 performing participants (measured in terms 
-of task accuracy) and evaluated the model pipeline with those groups. We found 
-the \tvt accuracy is higher (65.13\% vs 59.71\%) for the group that performed 
-better in terms of task accuracy. Higher task accuracy implies a participant 
-learned the symbol mapping better than a participant with lower task accuracy, 
-and the \tvt results show that this trend is measurable in the EEG data.  
+of task accuracy) and evaluated the model pipeline with those groups in the 0 - 
+700 ms time period.  We found the \tvt accuracy is higher (65.13\% vs 59.71\%) 
+for the group that performed better in terms of task accuracy. Higher task 
+accuracy implies a participant learned the symbol mapping better than a 
+participant with lower task accuracy, and the \tvt results show that this trend 
+is measurable in the EEG data.  However, we did not find an effect of similar 
+degree for the 0 - 500 ms time period.
 
 However, it should be noted that, because of the set up of our experimental 
 pipeline (in particular, averaging over participant EEG data), we cannot 
@@ -16,5 +18,11 @@ extreme effects when comparing the absolute top and absolute bottom performers,
 but the more data we remove from the groups we compare the lower the \tvt 
 accuracy will be. This makes this analysis method less useful here, but it does 
 support the hypothesized general trend that the \tvt accuracy should be higher 
-for those participants with higher task accuracy. Further experimentation would 
-be required to more rigorously test and validate this hypothesis.
+for those participants with higher task accuracy.
+
+Further, the experiment paradigm was designed to ensure that participants had 
+learned the mapping before progressing through the experiment. Because of this 
+design, the average task accuracy of all participants is very close together 
+and this type of effect may be difficult to measure. For these reasons we don't 
+believe we can confidently confirm the experiment's hypothesis, and additional 
+experimentation is required to more rigorously test and validate this theory.
