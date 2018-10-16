@@ -16,15 +16,15 @@ distribution. We corrected for multiple testing using the
 Benjamini-Hochberg-Yekutieli procedure where 
 applicable~\cite{benjamini2001control}, with an alpha value of 0.05.
 
-We also utilized bootstrap testing, which allowed us to compute a statistical 
-significance score for the difference in \tvt accuracies across two 
-experiments. To perform bootstrapping, we sampled with replacement $n_p$ times 
-from the list of participants and reran the model pipeline on those sampled 
-participants with the parameters of each experiment. This is repeated $R$ 
-times.  Similar to the permutation test, the resulting \tvt accuracies form 
-empirical distributions for each experiment. We generate a normal-theory 
-confidence interval around the real \tvt scores using the respective empricial 
-distribution. We compare two of these confidence intervals, one for each 
-experiment, to test if two \tvt scores for an experiment are statistically 
-different. In this work here we use $R = 100$ and generate the confidence 
-intervals with $p < 0.05$.
+We also utilized nonparametric bootstrap testing, which allowed us to compute a 
+statistical significance score for the difference in \tvt accuracies across two 
+experiments~\cite{davison1997bootstrap}. To perform bootstrapping, we sampled 
+with replacement $n_p$ times from the list of participants and reran the model 
+pipeline on those sampled participants with the parameters of each experiment.  
+This is repeated $R$ times.  Similar to the permutation test, the resulting 
+\tvt accuracies form empirical distributions for each experiment. We generate a 
+normal-theory confidence interval around the real \tvt scores using the 
+respective empricial distribution. We compare two of these confidence 
+intervals, one for each experiment, to test if two \tvt scores for an 
+experiment are statistically different. In this work here we use $R = 100$ and 
+generate the confidence intervals with $p < 0.05$.
