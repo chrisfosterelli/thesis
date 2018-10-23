@@ -18,11 +18,17 @@ over the text corpus. After training, the weights of the model can approximate
 the probability of collocated words. Each word has associated weights, which 
 create 300-dimensional vectors to use as training data in our experiment.
 
-Skip-Gram word vectors are a reasonable proxy for word semantics. Hollis et al.  
-showed that Skip-Gram could predict human judgments for semantic tasks (e.g.  
-sentiment ratings)~\cite{hollis2017extrapolating}. Hill et al.  additionally 
-concluded that Skip-Gram performs well on their SlimLex-999 evaluation, a high 
-quality word similarity benchmark for computational models of word 
+Skip-Gram word vectors are a reasonable proxy for word semantics, and have 
+interesting linguistic properties. For example, the difference between the 
+vectors for "man" and "woman" is similar to the distance between the vectors 
+for "king" and "queen", and the distance between "walked" and "walking" is 
+similar to the distance between "swam" and "swimming".
+
+More rigorously, Hollis et al. showed that Skip-Gram could predict human 
+judgments for semantic tasks (e.g. sentiment 
+ratings)~\cite{hollis2017extrapolating}.  Hill et al.  additionally concluded 
+that Skip-Gram performs well on their SlimLex-999 evaluation, a high quality 
+word similarity benchmark for computational models of word 
 meaning~\cite{hill2016simlex}. Further, Murphy et al. showed that computational 
 models can perform similarly to human benchmarks in the specific context of 
 neurolinguistic decoding tasks~\cite{Murphy2012}, and subsequent work showed 
