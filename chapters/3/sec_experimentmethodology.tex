@@ -15,8 +15,12 @@ trained to perform a word collocation task: the network receives a single word
 as input and predicts the probable collocated words for that input word. Pairs 
 of words are generated from the Google News text corpus using a sliding window 
 over the text corpus. After training, the weights of the model can approximate 
-the probability of collocated words. Each word has associated weights, which 
-create 300-dimensional vectors to use as training data in our experiment.
+the probability of collocated words. For each word in the vocabulary, the 
+corresponding weights are extracted from the weight matrix which connects the 
+input layer with the hidden layer. This extraction is done by multiplying the 
+weight matrix with a one-hot input vector representing the target word. The 
+resulting 300-dimensional word vectors are used as training data in our 
+experiment.
 
 Skip-Gram word vectors are a reasonable proxy for word semantics, and have 
 interesting linguistic properties. For example, the difference between the 
@@ -89,12 +93,13 @@ regression):
 \noindent where regression model $i$ is trained to predict the $i$th dimension 
 of the word vectors (column vector $Y_{:,i}$) using weights $W_{:,i}$. The 
 symbol $:$ indexes every element in the dimension, here indicating the 
-selection of a whole row or column vector from a matrix. $\alpha$ is a 
-hyperparameter that controls the level of regularization. We use a standard 
-$\alpha = 0.1$, although we tested several values empirically and found the 
-only minor variation in performance. Using a trained regression model, we can 
-predict a single element of a word vector for a given input $X_{i,:}$ via 
-$\hat{Y}_{i,j} = X_{i, :} \cdot W_{:,j}$.
+selection of a whole row or column vector from a matrix. The notation 
+$||\dot||_2$ represents the L2-norm, also known as the Euclidean length, of a 
+vector. $\alpha$ is a hyperparameter that controls the level of regularization.  
+We use a standard $\alpha = 0.1$, although we tested several values empirically 
+and found the only minor variation in performance.  Using a trained regression 
+model, we can predict a single element of a word vector for a given input 
+$X_{i,:}$ via $\hat{Y}_{i,j} = X_{i, :} \cdot W_{:,j}$.
   
 $W$ is the concatenation of the individual model weights such that $W = [ 
 W_{:,1}, W_{:,2}, ... W_{:,v} ]$. Collectively, $W$ is a single model that 
