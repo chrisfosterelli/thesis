@@ -29,9 +29,15 @@ sections of the cortex are contributing to what features of the semantic word
 vectors. As the earlier research in MEG used more simple, human created word 
 vectors they were able to identify which areas of the brain led to highly 
 predicted values of each word vector index. The Skip-Gram word vectors are not 
-as directly interpretable, but methods exist using linear transformations that 
-can group together computationally generated semantic word vectors (citation, 
-better explanation).
+as directly interpretable, but methods such as Principle Component Analysis 
+exist which use linear transformations to reduce the dimensionality of large 
+vectors down to a smaller set of new variables which may be more 
+interpretable~\cite{jolliffe2016principal}. If an interpretable dimension is 
+found, inverse PCA could potentially be used to find a vector whose values may 
+be used to weight the individual weights of the corresponding models for each 
+dimension of the vector. This would produce a weight map matching the brain at 
+each time stamp, which may yield interpretable results, but further work is 
+required to explore this.
 
 Another interesting aspect would be the comparison of words on a more 
 individual level. Does the model tend to confuse some words more than others?  
