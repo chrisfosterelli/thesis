@@ -97,7 +97,7 @@ selection of a whole row or column vector from a matrix. The notation
 $||\dot||_2$ represents the L2-norm, also known as the Euclidean length, of a 
 vector. $\alpha$ is a hyperparameter that controls the level of regularization.  
 We use a standard $\alpha = 0.1$, although we tested several values empirically 
-and found the only minor variation in performance.  Using a trained regression 
+and found the only minor variation in performance. Using a trained regression 
 model, we can predict a single element of a word vector for a given input 
 $X_{i,:}$ via $\hat{Y}_{i,j} = X_{i, :} \cdot W_{:,j}$.
   
@@ -107,6 +107,11 @@ produces predicted word vectors using $\hat{Y} = X \cdot W$. An example
 evaluation of the model on a single input vector $X_{i,:}$ from $X$ is seen in 
 Figure ~\ref{fig:features}.
 
+A linear model is chosen primarily for consistency with prior literature, but 
+additionally has the benefit of functioning well with small training datasets.
+Other models, such as neural networks, may be unstable or overfit with small 
+datasets and may also take longer to train as they do not have a closed form 
+solution in all cases.
 
 \begin{figure}[t]
   \centering
