@@ -28,21 +28,6 @@ vectors for ``man'' and ``woman'' is similar to the distance between the
 vectors for ``king'' and ``queen'', and the distance between ``walked'' and 
 ``walking'' is similar to the distance between ``swam'' and ``swimming''.
 
-More rigorously, Hollis et al. showed that Skip-Gram could predict human 
-judgments for semantic tasks (e.g. sentiment 
-ratings)~\cite{hollis2017extrapolating}.  Hill et al.  additionally concluded 
-that Skip-Gram performs well on their SlimLex-999 evaluation, a high quality 
-word similarity benchmark for computational models of word 
-meaning~\cite{hill2016simlex}. Further, Murphy et al. showed that computational 
-models can perform similarly to human benchmarks in the specific context of 
-neurolinguistic decoding tasks~\cite{Murphy2012}, and subsequent work showed 
-specifically that Skip-Gram could be used to identify the semantics of many 
-word types in fMRI and EEG~\cite{xu2016brainbench}. The semantic properties of 
-these word vectors make them a useful tool for performing semantic analysis on 
-brain data. A simplified representation, generated using the t-SNE 
-dimensionality reduction technique~\cite{maaten2008visualizing}, of the word 
-vectors used in this thesis are shown in Figure~\ref{fig:tsne}.
-
 \begin{figure}[t]
  \centerline{
    \includegraphics[width=\linewidth]{figures/tsne}
@@ -59,8 +44,23 @@ vectors used in this thesis are shown in Figure~\ref{fig:tsne}.
    one part of speech. Similar words and parts of speech are clustered closer 
    together in the vector space.
  }
- \label{fig:selection}
+ \label{fig:tsne}
 \end{figure}
+
+More rigorously, Hollis et al. showed that Skip-Gram could predict human 
+judgments for semantic tasks (e.g. sentiment 
+ratings)~\cite{hollis2017extrapolating}.  Hill et al.  additionally concluded 
+that Skip-Gram performs well on their SlimLex-999 evaluation, a high quality 
+word similarity benchmark for computational models of word 
+meaning~\cite{hill2016simlex}. Further, Murphy et al. showed that computational 
+models can perform similarly to human benchmarks in the specific context of 
+neurolinguistic decoding tasks~\cite{Murphy2012}, and subsequent work showed 
+specifically that Skip-Gram could be used to identify the semantics of many 
+word types in fMRI and EEG~\cite{xu2016brainbench}. The semantic properties of 
+these word vectors make them a useful tool for performing semantic analysis on 
+brain data. A simplified representation, generated using the t-SNE 
+dimensionality reduction technique~\cite{maaten2008visualizing}, of the word 
+vectors used in this thesis are shown in Figure~\ref{fig:tsne}.
 
 \subsection{Prediction Model}
 After the data preprocessing steps mentioned in Section 
