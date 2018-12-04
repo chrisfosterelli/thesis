@@ -1,28 +1,50 @@
-\newcommand\thesistitle{Using EEG to Decode Semantics \\During an Artificial Language Learning Task}
-\newcommand\nameanddegrees{%
-Chris Foster\\
-BCS, Thompson Rivers University, 2016}
-\newcommand\panel{%
-\HRule\\\panelist{Dr. Alona Fyshe}{Supervisor}{Department of Computer Science}
-\HRule\\\panelist{Dr. George Tzanetakis}{Departmental Member}{Department of Computer Science}}
-%\HRule\\\panelist{Dr. \Ans{Current Unknown}}{Additional Member}{Department of \Ans{Current Unknown Department}}}
-% Titlepage break
-\newcommand\tpbreak{\\[\baselineskip]}
+\newcommand\thesistitle{
+  Using EEG to Decode Semantics \\During an Artificial Language Learning Task
+}
+
+\newcommand\nameanddegrees{
+  Chris Foster\\
+  BCS, Thompson Rivers University, 2016
+}
+
+\newcommand\panel{
+  \HRule\\
+  \panelist{
+    Dr. Alona Fyshe
+  }{
+    Supervisor
+  }{
+    Department of Computer Science
+  }
+  \HRule\\
+  \panelist{
+    Dr. George Tzanetakis
+  }{
+    Departmental Member
+  }{
+    Department of Computer Science
+  }
+}
+
+\newcommand\tpbreak{
+  \\[\baselineskip]
+}
 
 \newpage
+
 % Suppress numbers on the first page
 \thispagestyle{empty}
 
-% Header Footer Setup (for Front matter)
+% Header Footer Setup (for front matter)
 \pagestyle{myheadings}
 \pagenumbering{roman}
-% We use this in addition to the default \LaTeX page configuration routines
-% because we have no way of saying \thispagestyle after the glossary and bibliography starts.
-\fancypagestyle{plain}{%
-\fancyhf{}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+
+% Correct styles
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
 % Front Matter
@@ -40,11 +62,11 @@ BCS, Thompson Rivers University, 2016}
 \newpage
 \pagestyle{myheadings}
 \pagenumbering{arabic}
-% We use this in addition to the default LaTeX page configuration routines
-% because we have no way of saying \thispagestyle after the bibliography starts.
-\fancypagestyle{plain}{%
-\fancyhf{}
-\fancyhead[R]{\ifnum\thepage=1\relax\else\thepage\fi}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+
+% Correct styles
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\ifnum\thepage=1\relax\else\thepage\fi}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
