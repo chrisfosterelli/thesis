@@ -32,12 +32,12 @@ predicted values of each word vector index. The Skip-Gram word vectors are not
 as directly interpretable, but methods such as Principle Component Analysis 
 (PCA) exist which use linear transformations to reduce the dimensionality of 
 large vectors down to a smaller set of new variables which may be more 
-interpretable~\cite{jolliffe2016principal}. If an interpretable dimension is 
-found, inverse PCA could potentially be used to find a vector whose values may 
-be used to combine the individual weights of the corresponding models for each 
-dimension of the vector. This would produce a weight map matching the brain at 
-each time stamp, which may yield interpretable results, but further work is 
-required to explore this.
+interpretable~\cite{jolliffe2016principal}. We can apply PCA to the trained 
+model's weights, and calculate loadings from the principle components to 
+identify features which are influencing the model similarly to other features.  
+Since our model features represent a given sensor at a given point in time, it 
+may provide insights to areas and timepoints of the brain's processing which 
+contribute similar information to the overall model.
 
 Another interesting aspect would be the comparison of words on a more 
 individual level. Does the model tend to confuse some words more than others?  
@@ -60,7 +60,7 @@ per word for a larger number of participants.  We anticipate this may help us
 continue to explore the adaption of these experiments to EEG in a more close 
 replication of the earlier studies.
 
-We've also initially explored the study of more cost effective EEG devices, 
+We have also initially explored the study of more cost effective EEG devices, 
 such as the UltraCortex (Markv IV, OpenBCI, New York, USA). These style of 
 devices are substantially cheaper and should much allow larger quantities of 
 data collection, but consequently have the drawback that the data is poorer 
